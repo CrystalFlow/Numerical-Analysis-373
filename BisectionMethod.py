@@ -1,0 +1,1 @@
+# The bisection method to find roots of functions given a bracket. 
