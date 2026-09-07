@@ -3,7 +3,7 @@ import math
 
 # Iterations needed for Bisection to find root, given a tolerance
 def iterationsNeeded (tolerance, currentBracket):
-    iteration = int( (math.log((currentBracket[1] - currentBracket[0]) / tolerance) / math.log(2) ) - 1 )
+    iteration = math.ceil( (math.log((currentBracket[1] - currentBracket[0]) / tolerance) / math.log(2) ) - 1 )
     #Might need to add to account for division issues
     return iteration
 
