@@ -1,0 +1,1 @@
+# The Secant Method for finding roots of functions. Slightly faster and does not require derivation, but is a pain sometimes. 
