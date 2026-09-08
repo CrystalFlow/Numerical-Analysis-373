@@ -17,7 +17,7 @@ def SecantProcess(x0, x1, tol):
 
     while True: 
         x2 = ( (x0 * function(x1)) - (x1 * function(x0)) ) / ( function(x1) - function(x0) )
-        print(f"Iteration: {counter}, iterate: {x2}")
+        print(f"Iteration {counter + 1}: x_{counter + 1} = {x2}")
         x0 = x1
         x1 = x2
 

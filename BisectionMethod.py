@@ -14,6 +14,7 @@ def bisectionProcess(tolerance, currentBracket):
     c = None
     for i in range(k):
         c = (currentBracket[1] + currentBracket[0]) / 2
+        print(f"Iteration {i+1}: c_{i} = {c}")
         val = function(c)
         if val > 0:   currentBracket[1] = c
         elif val < 0: currentBracket[0] = c
