@@ -5,9 +5,9 @@ from math import inf
 
 t = sp.Symbol('t')
 #Input function into 'f' for calculation before initializaiton. 
-f = sp.sin(t) - 0.5                     # <-- 
+function = sp.sin(t) - 0.5                     # <-- 
 #Differentiation of the input function.
-f_prime = sp.diff(f, t)
+func_prime = sp.diff(function, t)
 
 #Input a guess x=x_0 to start the algorithm.
 x = 1                                   # <-- 
@@ -15,7 +15,7 @@ x = 1                                   # <--
 tol = 0.01 #0.000001                              # <-- 
 
 #To find the next iterate
-def NewtonsProcess(x_Initial, tolerance): 
+def NewtonsProcess(x_Initial, tolerance, f, f_prime): 
     counter = 0
     x_next = inf 
     while True:
@@ -29,6 +29,6 @@ def NewtonsProcess(x_Initial, tolerance):
     return x_next
 
 print(f"Guess 0: x_0 = {x}")
-ans = NewtonsProcess(x, tol)
+ans = NewtonsProcess(x, tol, function, func_prime)
 
 print(f"Root at x = {ans}, with tolerance of {tol}. ")
