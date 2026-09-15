@@ -6,18 +6,28 @@ from NewtonsMethod import NewtonsProcess
 
 t = sp.Symbol('t')
 #Input function into 'f' for calculation before initializaiton.
-f = t**3 - 6*t**2 + 11*t - 6             # <--
+f = t**4 - 5*t**3 + 9*t**2 - 53*t +132             # <--
 #Calculating the the first differential
 f_prime = sp.diff(f, t)
 #Input the tolerance needed
-tolerance = 0.01                        # <--
-#Input the initial x guess for the first Newton's Method process
-x = 0                                   # <--
+tolerance = 0.0001                        # <--
+#Input the initial x guess for the first Newton's Method process.
+#A tiny imaginary part is included so Newton's Method (now complex-capable, see NewtonsMethod.py)
+#can also converge onto complex-conjugate root pairs, not just real roots.
+x = 0.5 + 0.1j                            # <--
 
 listOfFunctions = [f]
 roots = []
 
+#Polish: a root found on a deflated (and thus slightly inaccurate) polynomial is refined by using it
+#as the initial guess for Newton's Method on the ORIGINAL function, correcting accumulated deflation error.
+def polish_root(root_guess):
+    polished = NewtonsProcess(root_guess, tolerance, f, f_prime)
+    print(f"Polished root: {root_guess} -> {polished}")
+    return polished
+
 x_initial = NewtonsProcess(x, tolerance, f, f_prime)
+x_initial = polish_root(x_initial)
 roots.append(x_initial)
 print(f"Root 1 found: t = {x_initial}")
 
@@ -39,6 +49,7 @@ while sp.degree(current_f, t) > 1:
         current_f_prime = sp.diff(current_f, t)
         current_root = NewtonsProcess(x, tolerance, current_f, current_f_prime)
 
+    current_root = polish_root(current_root)
     roots.append(current_root)
     print(f"Root {len(roots)} found: t = {current_root}")
 
