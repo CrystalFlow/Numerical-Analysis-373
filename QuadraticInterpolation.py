@@ -1,10 +1,10 @@
-#This file reconstructs a quadratic p(x) = ax^2 + bx + c from 3 given points using Lagrangian Interpolation.
+#This file reconstructs a polynomial p(x) from given points using Lagrangian Interpolation.
 import sympy as sp
 
 x = sp.Symbol('x')
 
-#Input the 3 points (x_k, y_k) the polynomial passes through - type them directly into this array.
-points = [(0, 1), (1, 2), (2, 1)]          # <--
+#Input the # of points (x_k, y_k) the polynomial passes through - type them directly into this array.
+points = [(1, sp.ln(1)), (1.2, sp.ln(1.2)), (1.5, sp.ln(1.5)), (2, sp.ln(2))]          # <--
 
 def LagrangeBasis(points, k):
     x_k = points[k][0]
@@ -27,5 +27,5 @@ def QuadraticInterpolation(points):
     return p
 
 p_x = QuadraticInterpolation(points)
-a, b, c = sp.Poly(p_x, x).all_coeffs()
-print(f"a = {a}, b = {b}, c = {c}")
+coefficients = sp.Poly(p_x, x).all_coeffs()
+print(f"a = {coefficients[0]}, b = {coefficients[1]}, c = {coefficients[2]}, d = {coefficients[3]}")
