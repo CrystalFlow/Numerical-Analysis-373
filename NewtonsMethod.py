@@ -34,7 +34,7 @@ def NewtonsProcess(x_Initial, tolerance, f, f_prime):
         if counter == 25: break
     return x_next
 
-print(f"Guess 0: x_0 = {x}")
-ans = NewtonsProcess(x, tol, function, func_prime)
-
-print(f"Root at x = {ans}, with tolerance of {tol}. ")
+if __name__ == "__main__":
+    print(f"Guess 0: x_0 = {x}")
+    ans = NewtonsProcess(x, tol, function, func_prime)
+    print(f"Root at x = {ans}, with tolerance of {tol}. ")
