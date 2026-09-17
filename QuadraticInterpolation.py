@@ -29,3 +29,8 @@ def QuadraticInterpolation(points):
 p_x = QuadraticInterpolation(points)
 coefficients = sp.Poly(p_x, x).all_coeffs()
 print(f"a = {coefficients[0]}, b = {coefficients[1]}, c = {coefficients[2]}, d = {coefficients[3]}")
+
+error = []
+for i in range(len(points)):
+    error.append(abs(sp.ln(points[i][0] - p_x.subs(x, points[i][0]) )))
+print(error)
