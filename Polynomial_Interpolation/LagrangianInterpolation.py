@@ -15,7 +15,7 @@ def LagrangeBasis(points, k):
             L_k *= (x - x_j) / (x_k - x_j)
     return L_k
 
-def QuadraticInterpolation(points):
+def LagrangianInterpolation(points):
     p = 0
     for k in range(len(points)):
         L_k = LagrangeBasis(points, k)
@@ -26,7 +26,7 @@ def QuadraticInterpolation(points):
     print(f"p(x) = {p}")
     return p
 
-p_x = QuadraticInterpolation(points)
+p_x = LagrangianInterpolation(points)
 coefficients = sp.Poly(p_x, x).all_coeffs()
 print(f"a = {coefficients[0]}, b = {coefficients[1]}, c = {coefficients[2]}, d = {coefficients[3]}")
 
