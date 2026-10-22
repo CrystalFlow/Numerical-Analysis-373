@@ -17,6 +17,7 @@ b = 3
 
 
 #Trapezoidal Method Integration
+print("Approximations: ")
 approximations = []
 for subinterval in N:
     sum = 0
@@ -35,6 +36,7 @@ print()
 
 
 #Error
+print("Errors, | integral(f(x)) - T_n(f) |: ")
 error = []
 exact = sp.integrate(function, (t, a, b)).evalf()
 for index, subinterval in enumerate(N):
@@ -43,10 +45,19 @@ for index, subinterval in enumerate(N):
 print()
 
 
+#Error verification
+print("C/N^2, convergence, verification: ")
+for index, subinterval in enumerate(N):
+    print(f"N = {subinterval}: C ≈ {error[index] * subinterval**2}")
+print()
+
+
 #Error Bound 
+print("Error Bounds: ")
 error_bounds = []
 M = findMaxOf2ndDerivative(function, a, b).evalf()
+print(f"M value = {M}")
 for subinterval in N:
     bound = (M * (b-a)**3) / (12 * subinterval**2)
     error_bounds.append(bound)
-    print(f"Error Bound: {bound}")
+    print(f"Error Bound, N = {subinterval}: {bound}")
