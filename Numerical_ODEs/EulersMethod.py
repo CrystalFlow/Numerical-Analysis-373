@@ -13,9 +13,9 @@ t_0 = 0
 #Initial condition, y(t_0)
 y_0 = 0
 #Final time
-T = 0.2
-#Number of steps
-N = [2]
+T = 1
+#Number of steps (h = 0.1)
+N = [100, 1000, 10000]
 #Exact solution y(t), used for the error calculation
 exact_solution = 10 * sp.sqrt(2) * sp.tanh(t / sp.sqrt(2))
 
@@ -50,15 +50,25 @@ if __name__ == "__main__":
     print("Errors, | y(T) - y_N |: ")
     exact = exact_solution.subs(t, T).evalf()
     print(f"Exact calculation: {exact}")
+    errors = []
     for index, steps in enumerate(N):
         error = abs(approximations[index] - exact)
+        errors.append(error)
         print(f"N = {steps}: Error = {error}")
     print()
 
+
+    #Error verification
+    print("C*h, convergence, verification (C = error / h): ")
+    for index, steps in enumerate(N):
+        h = (T - t_0) / steps
+        print(f"N = {steps}, h = {h}: C ≈ {errors[index] / h}")
+    print()
+
     #Step by step table for the first N: iteration, t_k, y_k, f(t_k, y_k)
-    print(f"Table, N = {N[0]}: ")
-    ts, ys = EulersMethod(function, t_0, y_0, T, N[0])
-    print(f"{'Iteration':<10}{'t_k':<10}{'y_k':<22}{'f(t_k, y_k)':<22}")
-    for k in range(len(ts)):
-        f_k = function.subs({t: ts[k], y: ys[k]}).evalf()
-        print(f"{k:<10}{float(ts[k]):<10.4f}{float(ys[k]):<22.10f}{float(f_k):<22.10f}")
+    # print(f"Table, N = {N[0]}: ")
+    # ts, ys = EulersMethod(function, t_0, y_0, T, N[0])
+    # print(f"{'Iteration':<10}{'t_k':<10}{'y_k':<22}{'f(t_k, y_k)':<22}")
+    # for k in range(len(ts)):
+    #     f_k = function.subs({t: ts[k], y: ys[k]}).evalf()
+    #     print(f"{k:<10}{float(ts[k]):<10.4f}{float(ys[k]):<22.10f}{float(f_k):<22.10f}")
