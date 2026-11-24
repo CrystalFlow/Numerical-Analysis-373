@@ -6,7 +6,7 @@ from NewtonsMethod import NewtonsProcess
 
 t = sp.Symbol('t')
 #Input function into 'f' for calculation before initializaiton.
-f = t**4 - 5*t**3 + 9*t**2 - 53*t +132             # <--
+f =  t**2 - ((8/7) * t )+ (8/35) #t**4 - 5*t**3 + 9*t**2 - 53*t +132             # <--
 #Calculating the the first differential
 f_prime = sp.diff(f, t)
 #Input the tolerance needed

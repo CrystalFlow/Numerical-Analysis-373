@@ -24,7 +24,7 @@ def bisectionProcess(tolerance, currentBracket):
 
 #Input function for calculation before initializaiton. 
 def function(x):
-    return math.sin(x) - 0.5
+    return x**2 - ((8/7) * x )+ (8/35)
 
 #Insert values that bracket a solution/root before initialization. 
 currBracket = [0, 1]

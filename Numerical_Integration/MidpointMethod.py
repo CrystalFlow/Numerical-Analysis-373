@@ -6,13 +6,13 @@ t = sp.Symbol('t')
 User Inputs
 """
 #f(x), function
-function = t**2 + sp.cos(t)
+function = sp.exp(1) * ( 1 + (t-1) + ((t-1)**2 )/2 ) / sp.sqrt(1-t) #( sp.exp(t) - (sp.exp(1) * ( 1 + (t-1) + ((t-1)**2 )/2 ))) / sp.sqrt(1-t) #t**2 + sp.cos(t)
 #Subintervals
-N = [10, 100, 1000]
+N = [10] #100, 1000
 #Left Bound
 a = 0
 #Right Bound
-b = 3
+b = 1 #3
 
 
 #Error Bound
@@ -51,6 +51,7 @@ if __name__ == "__main__":
     print("Errors, | integral(f(x)) - I_n(f) |: ")
     error = []
     exact = sp.integrate(function, (t, a, b)).evalf()
+    print(f"Exact calculation: {exact}")
     for index, subinterval in enumerate(N):
         error.append(abs(approximations[index] - exact))
         print(f"N = {subinterval}: Error = {error[index]}")
